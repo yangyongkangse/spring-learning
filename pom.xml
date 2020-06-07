@@ -72,14 +72,6 @@
                 <version>${boot.version}</version>
                 <optional>true</optional>
             </dependency>
-            <!-- 开启项目热部署,缺点只支持spring boot-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <version>${boot.version}</version>
-                <optional>true</optional>
-                <!--只有设置为true时才会热启动，即当修改了html、css、js等这些静态资源后不用重启项目直接刷新即可-->
-            </dependency>
             <!-- 支持RabbitMQ  消息队列-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -221,7 +213,8 @@
         </profile>
     </profiles>
     <modules>
-<!--        <module>spring-boot-learning</module>-->
+        <module>spring-boot-learning</module>
+        <module>spring-api-common</module>
     </modules>
     <build>
         <resources>

@@ -1,4 +1,4 @@
-package com.spring.boot.learning.tools;
+package com.spring.api.tools;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;

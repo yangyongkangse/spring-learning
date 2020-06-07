@@ -37,13 +37,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- 开启项目热部署,缺点只支持spring boot-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-            <!--只有设置为true时才会热启动，即当修改了html、css、js等这些静态资源后不用重启项目直接刷新即可-->
-        </dependency>
         <!-- 支持RabbitMQ  消息队列-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -151,15 +144,14 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.spring.learning</groupId>
+            <artifactId>spring-api-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
     </build>
 
 </project>

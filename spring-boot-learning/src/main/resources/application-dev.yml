@@ -10,17 +10,11 @@ logging:
 spring:
   application:
     name: spring-boot-learning
-  devtools:
-    remote:
-      restart:
-        enabled: true
-    restart:
-      additional-paths: src/main/java
   jackson:
     date-format: 'yyyy-MM-dd HH:mm:ss'
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://118.25.92.157:3306/learning?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/learning?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource  #数据源
@@ -35,19 +29,19 @@ spring:
       connection-test-query: SELECT 1
   redis:
     database: 0 #Redis数据库索引（默认为0）
-    host: 118.25.92.157 # Redis服务器地址
+    host: localhost # Redis服务器地址
     port: 6379  # Redis服务器端口
     password: root # Redis服务器连接密码（默认为空）
     timeout: 1000 #链接超时时间
   data:
     mongodb:
       database: test
-      host: 118.25.92.157
+      host: localhost
       port: 27017
       username: root
       password: root
   rabbitmq:
-    addresses: 118.25.92.157
+    addresses: localhost
     port: 5672
     username: guest
     password: guest

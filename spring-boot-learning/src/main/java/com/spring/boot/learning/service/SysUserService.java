@@ -14,13 +14,6 @@ public interface SysUserService extends IService<SysUserModel> {
 	/**
 	 * author: yangyk
 	 * date:2020/5/31 11:03
-	 * description:登录验证
-	 **/
-	SysUserModel loginVerification(SysUserModel user);
-
-	/**
-	 * author: yangyk
-	 * date:2020/5/31 11:03
 	 * description:
 	 **/
 	UserEntity loadUserByUsername(String username);

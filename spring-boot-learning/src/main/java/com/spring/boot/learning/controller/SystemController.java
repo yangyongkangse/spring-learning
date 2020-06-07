@@ -1,10 +1,10 @@
 package com.spring.boot.learning.controller;
 
-import com.spring.boot.learning.model.ResponseEntity;
+import com.spring.api.model.ResponseEntity;
+import com.spring.api.tools.Constant;
 import com.spring.boot.learning.model.SysMenuModel;
 import com.spring.boot.learning.model.UserEntity;
 import com.spring.boot.learning.service.SysMenuService;
-import com.spring.boot.learning.tools.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

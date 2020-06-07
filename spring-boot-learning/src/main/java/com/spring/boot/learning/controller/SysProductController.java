@@ -2,10 +2,10 @@ package com.spring.boot.learning.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.spring.boot.learning.model.ResponseEntity;
+import com.spring.api.model.ResponseEntity;
+import com.spring.api.tools.Constant;
 import com.spring.boot.learning.model.SysProduct;
 import com.spring.boot.learning.service.SysProductService;
-import com.spring.boot.learning.tools.Constant;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,0 +1,37 @@
+#===========================
+# 容器相关设置
+server:
+  port: 9082
+  compression:
+    enabled: true  #是否开启压缩，默认为false.
+    mime-types: 'application/json,text/css,text/html'   #指定要压缩的MIME type，多个以逗号分隔
+    min-response-size: 2048  #执行压缩的阈值，默认为2048
+#log4j2相关配置
+logging:
+  config: classpath:log4j2-spring.xml
+#============================
+# spring 组件相关设置
+spring:
+  application:
+    name: spring-boot-learning
+  jackson:
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+  rabbitmq:
+    addresses: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+#=============================
+#=============================
+#swagger
+swagger:
+  enabled: true
+  title: 'swagger-spring-boot-starter'
+  description: '基于Swagger构建的SpringBoot RESTApi 文档'
+  version: '1.0'
+  base-package: 'com.spring.boot'
+  base-path: /**
+  exclude-path:
+#=============================

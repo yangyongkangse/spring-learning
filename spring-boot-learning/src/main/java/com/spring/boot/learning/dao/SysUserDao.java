@@ -11,12 +11,6 @@ import org.apache.ibatis.annotations.Param;
  * description:
  **/
 public interface SysUserDao extends BaseMapper<SysUserModel> {
-	/**
-	 * author: yangyk
-	 * date:2020/5/31 11:06
-	 * description:
-	 **/
-	SysUserModel loginVerification(SysUserModel user);
 
 	/**
 	 * author: yangyk

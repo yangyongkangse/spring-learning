@@ -1,4 +1,4 @@
-package com.spring.boot.learning.tools;
+package com.spring.api.tools;
 
 /**
  * Constant

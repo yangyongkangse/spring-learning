@@ -1,4 +1,4 @@
-package com.spring.boot.learning.model;
+package com.spring.api.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

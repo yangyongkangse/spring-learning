@@ -1,6 +1,6 @@
 package com.spring.boot.learning.controller;
 
-import com.spring.boot.learning.tools.Constant;
+import com.spring.api.tools.Constant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;

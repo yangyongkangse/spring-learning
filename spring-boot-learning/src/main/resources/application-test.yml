@@ -14,12 +14,6 @@ logging:
 spring:
   application:
     name: spring-boot-learning
-  devtools:
-    remote:
-      restart:
-        enabled: true
-    restart:
-      additional-paths: src/main/java
   jackson:
     date-format: 'yyyy-MM-dd HH:mm:ss'
   thymeleaf:

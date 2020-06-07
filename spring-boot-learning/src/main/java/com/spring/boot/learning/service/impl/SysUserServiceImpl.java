@@ -5,7 +5,6 @@ import com.spring.boot.learning.dao.SysUserDao;
 import com.spring.boot.learning.model.SysUserModel;
 import com.spring.boot.learning.model.UserEntity;
 import com.spring.boot.learning.service.SysUserService;
-import com.spring.boot.learning.tools.MD5Utils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +22,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserModel> im
 	@Resource
 	private SysUserDao sysUserDao;
 
-	@Override
-	public SysUserModel loginVerification(SysUserModel user) {
-		user.setPassword(MD5Utils.getMD5ofStr(user.getPassword()));
-		return sysUserDao.loginVerification(user);
-	}
 
 	@Override
 	public UserEntity loadUserByUsername(String username) {

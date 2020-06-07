@@ -1,6 +1,6 @@
 package com.spring.boot.learning.controller;
 
-import com.spring.boot.learning.model.ResponseEntity;
+import com.spring.api.model.ResponseEntity;
 import com.spring.boot.learning.model.SysUserModel;
 import com.spring.boot.learning.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;

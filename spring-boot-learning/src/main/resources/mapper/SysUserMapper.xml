@@ -14,25 +14,6 @@
         <result column="update_time" property="updateTime"/>
         <result column="update_user" property="updateUser"/>
     </resultMap>
-    <select id="loginVerification" parameterType="com.spring.boot.learning.model.SysUserModel" resultMap="BaseResultMap">
-        select id,
-               username,
-               password,
-               phone,
-               remark,
-               del_flag,
-               create_time,
-               create_user,
-               update_time,
-               update_user
-        from tb_sys_user where del_flag = 0
-        <if test="password != null and password != ''">
-            AND password = #{password,jdbcType=VARCHAR}
-        </if>
-        <if test="username != null and username != ''">
-            AND username = #{username,jdbcType=VARCHAR}
-        </if>
-    </select>
     <select id="loadUserByUsername" resultType="com.spring.boot.learning.model.UserEntity">
         select id,
                username,

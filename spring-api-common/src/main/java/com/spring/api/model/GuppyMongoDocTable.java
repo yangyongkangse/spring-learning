@@ -1,4 +1,4 @@
-package com.spring.boot.learning.model;
+package com.spring.api.model;
 
 import lombok.Data;
 

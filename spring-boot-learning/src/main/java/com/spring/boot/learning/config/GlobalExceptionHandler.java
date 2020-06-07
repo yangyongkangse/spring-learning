@@ -1,6 +1,6 @@
 package com.spring.boot.learning.config;
 
-import com.spring.boot.learning.model.ResponseEntity;
+import com.spring.api.model.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

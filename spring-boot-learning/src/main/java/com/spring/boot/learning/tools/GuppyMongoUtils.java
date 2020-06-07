@@ -3,7 +3,7 @@ package com.spring.boot.learning.tools;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.model.GridFSFile;
-import com.spring.boot.learning.model.GuppyMongoDocTable;
+import com.spring.api.model.GuppyMongoDocTable;
 import lombok.extern.log4j.Log4j2;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
