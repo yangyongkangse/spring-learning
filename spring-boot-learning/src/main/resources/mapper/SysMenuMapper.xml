@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.boot.learning.dao.SysMenuDao">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.spring.boot.learning.model.SysMenuModel">
+        <id column="id" property="id"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="menu_url" property="menuUrl"/>
+        <result column="icon" property="icon"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+    <select id="getUserMenuInfo" resultMap="BaseResultMap">
+        select m.id,
+               menu_name,
+               menu_url,
+               parent_id,
+               icon
+        from tb_sys_user_role r
+                     left join tb_sys_role_permit tsrp on r.role_id = tsrp.role_id
+                     left join tb_sys_menu m on tsrp.menu_id = m.id
+        where m.del_flag = 0
+          and r.user_id = #{userId}
+    </select>
+</mapper>

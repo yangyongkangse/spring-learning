@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.boot.learning.dao.SysCultureDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.spring.boot.learning.model.SysCulture">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+    <select id="getSysCultureList" resultMap="BaseResultMap">
+        select id,
+        title,
+        content,
+        del_flag,
+        create_time,
+        create_user,
+        update_time,
+        update_user
+        from tb_sys_culture
+        where del_flag = 0
+        <if test="sysCulture.title!=null and sysCulture.title!=''">
+            AND title like concat('%',#{sysCulture.title},'%')
+        </if>
+        order by update_time desc
+    </select>
+</mapper>

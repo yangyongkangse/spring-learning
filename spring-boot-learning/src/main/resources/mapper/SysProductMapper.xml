@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.boot.learning.dao.SysProductDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.spring.boot.learning.model.SysProduct">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+    <select id="getSysProductList"
+            resultMap="BaseResultMap">
+        select t.id,
+        t.title,
+        t.content,
+        t.del_flag,
+        t.create_time,
+        t.create_user,
+        t.update_time,
+        t.update_user
+        from tb_sys_product t
+        where t.del_flag = 0
+        <if test="sysProduct.title!=null and sysProduct.title!=''">
+            AND title like concat('%',#{sysProduct.title},'%')
+        </if>
+        order by update_time desc
+    </select>
+</mapper>
