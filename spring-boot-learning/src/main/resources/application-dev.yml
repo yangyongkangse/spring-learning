@@ -71,3 +71,10 @@ swagger:
   base-path: /**
   exclude-path:
 #=============================
+#jwt
+jwt:
+  header: Authorization
+  secret: aHR0cHM6Ly9teS5vc2NoaW5hLm5ldC91LzM2ODE4Njg
+  expiration: 604800
+  tokenHead: "Bearer "
+#=============================

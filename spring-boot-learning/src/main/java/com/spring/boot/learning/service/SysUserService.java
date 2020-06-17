@@ -5,10 +5,10 @@ import com.spring.boot.learning.model.SysUserModel;
 import com.spring.boot.learning.model.UserEntity;
 
 /**
-* author: yangyk
-* date:2020/5/31 11:23
-* description:
-**/
+ * author: yangyk
+ * date:2020/5/31 11:23
+ * description:
+ **/
 public interface SysUserService extends IService<SysUserModel> {
 
 	/**
@@ -17,4 +17,5 @@ public interface SysUserService extends IService<SysUserModel> {
 	 * description:
 	 **/
 	UserEntity loadUserByUsername(String username);
+
 }

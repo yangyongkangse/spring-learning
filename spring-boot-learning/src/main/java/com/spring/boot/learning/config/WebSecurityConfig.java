@@ -1,17 +1,22 @@
 package com.spring.boot.learning.config;
 
+import com.spring.boot.learning.security.CustomUserDetailsService;
+import com.spring.boot.learning.security.JwtAuthenticationEntryPoint;
+import com.spring.boot.learning.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 /**
@@ -24,12 +29,42 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	private CustomUserDetailsService customUserDetailsService;
 
-	private UserDetailsService userDetailsService;
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
 	@Autowired
-	private void setUserDetailsService(UserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
+	private void setJwtAuthenticationEntryPoint(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
+		this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+	}
+
+	@Autowired
+	private void setCustomUserDetailsService(CustomUserDetailsService customUserDetailsService) {
+		this.customUserDetailsService = customUserDetailsService;
+	}
+
+
+	@Bean
+	public JwtAuthenticationFilter jwtAuthenticationFilter() {
+		return new JwtAuthenticationFilter();
+	}
+
+	/**
+	 * author: yangyk
+	 * date:2020/6/17 10:04
+	 * description:配置用户自定义逻辑
+	 **/
+	@Override
+	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		authenticationManagerBuilder
+				.userDetailsService(customUserDetailsService)
+				.passwordEncoder(passwordEncoder());
+	}
+
+	@Bean(BeanIds.AUTHENTICATION_MANAGER)
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
 	}
 
 	/**
@@ -42,42 +77,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	/**
-	 * author: yangyk
-	 * date:2020/6/3 12:42
-	 * description:配置DaoAuthenticationProvider
-	 **/
-	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider authProvider
-				= new DaoAuthenticationProvider();
-		authProvider.setUserDetailsService(userDetailsService);
-		authProvider.setPasswordEncoder(passwordEncoder());
-		return authProvider;
-	}
-
-	/**
-	 * author: yangyk
-	 * date:2020/6/3 11:59
-	 * description:配置AuthenticationManagerBuilder用户校验逻辑
-	 **/
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) {
-		auth.authenticationProvider(authenticationProvider());
-	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//配置不需要登录验证
-		http.formLogin().and().authorizeRequests()
+		http.formLogin().and()
+				.cors()
+				.and()
+				.csrf()
+				.disable()
+				.exceptionHandling()
+				.authenticationEntryPoint(jwtAuthenticationEntryPoint)
+				.and()
+				.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
+				.authorizeRequests()
 				//允许跨域OPTIONS访问,防止401
 				.antMatchers(HttpMethod.OPTIONS, "**").permitAll()
 				//允许直接访问的资源
-				.antMatchers("/api/login/check","/api/system/getUserMenuInfo").permitAll()
-				.anyRequest().authenticated()
-				.and()
-				.cors()
-				.and()
-				.csrf().disable();
+				.antMatchers("/api/login/**").permitAll()
+				.anyRequest()
+				.authenticated();
+		// Add our custom JWT security filter
+		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 }

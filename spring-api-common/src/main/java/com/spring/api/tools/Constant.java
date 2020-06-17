@@ -18,4 +18,6 @@ public class Constant {
 	public static final String STRING3 = "3";
 	public static final String SUCCESS_MSG = "接口调用成功";
 	public static final String SUCCESS_ERROR = "接口调用失败";
+	public static final String TOKEN = "接口调用失败";
+	public static final Integer ERROR_CODE = 500;
 }
