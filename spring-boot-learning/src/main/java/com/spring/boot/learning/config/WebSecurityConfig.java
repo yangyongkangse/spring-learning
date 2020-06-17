@@ -1,6 +1,5 @@
 package com.spring.boot.learning.config;
 
-import com.spring.boot.learning.security.CustomUserDetailsService;
 import com.spring.boot.learning.security.JwtAuthenticationEntryPoint;
 import com.spring.boot.learning.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -29,7 +29,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private CustomUserDetailsService customUserDetailsService;
+	private UserDetailsService userDetailsService;
 
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
@@ -39,8 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Autowired
-	private void setCustomUserDetailsService(CustomUserDetailsService customUserDetailsService) {
-		this.customUserDetailsService = customUserDetailsService;
+	private void setUserDetailsService(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
 	}
 
 
@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder
-				.userDetailsService(customUserDetailsService)
+				.userDetailsService(userDetailsService)
 				.passwordEncoder(passwordEncoder());
 	}
 

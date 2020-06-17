@@ -1,4 +1,4 @@
-package com.spring.boot.learning.config;
+package com.spring.boot.learning.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,14 +10,13 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ResourceNotFoundException extends RuntimeException {
+public class IoException extends java.io.IOException {
 
 	private static final long serialVersionUID = 7157365335770975645L;
 	private Integer code;
-
 	private String message;
 
-	public ResourceNotFoundException(Integer code, String message) {
+	public IoException(Integer code, String message) {
 		this.code = code;
 		this.message = message;
 	}

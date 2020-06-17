@@ -1,7 +1,7 @@
 package com.spring.boot.learning.security;
 
 import com.spring.api.tools.Constant;
-import com.spring.boot.learning.config.ResourceNotFoundException;
+import com.spring.boot.learning.exception.ResourceNotFoundException;
 import com.spring.boot.learning.model.SysRoleModel;
 import com.spring.boot.learning.model.UserEntity;
 import com.spring.boot.learning.service.SysRoleService;
@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -25,11 +26,11 @@ import java.util.List;
 @Component
 public class UserAuthenticationManager implements AuthenticationManager {
 
-	private CustomUserDetailsService customUserDetailsService;
+	private UserDetailsService userDetailsService;
 
 	@Autowired
-	private void setCustomUserDetailsService(CustomUserDetailsService customUserDetailsService) {
-		this.customUserDetailsService = customUserDetailsService;
+	private void setUserDetailsService(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
 	}
 
 	private SysRoleService sysRoleService;
@@ -42,7 +43,7 @@ public class UserAuthenticationManager implements AuthenticationManager {
 	@Override
 	public Authentication authenticate(Authentication authentication) {
 		//这里简单校验用户名和密码
-		UserEntity userEntity = customUserDetailsService.loadUserByUsername(authentication.getName());
+		UserEntity userEntity = (UserEntity) userDetailsService.loadUserByUsername(authentication.getName());
 		if (userEntity == null) {
 			throw new ResourceNotFoundException(Constant.ERROR_CODE, authentication.getName() + " not found");
 		}

@@ -1,7 +1,5 @@
 package com.spring.boot.learning.security;
 
-import com.spring.api.tools.Constant;
-import com.spring.boot.learning.config.ResourceNotFoundException;
 import io.jsonwebtoken.Claims;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -32,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private JwtTokenProvider tokenProvider;
 
-	private CustomUserDetailsService customUserDetailsService;
+	private UserDetailsService userDetailsService;
 
 	@Autowired
 	private void setJwtTokenProvider(JwtTokenProvider tokenProvider) {
@@ -40,13 +39,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	}
 
 	@Autowired
-	private void setCustomUserDetailsService(CustomUserDetailsService customUserDetailsService) {
-		this.customUserDetailsService = customUserDetailsService;
+	private void setUserDetailsService(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
 	}
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-		try {
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 			String bearerToken = request.getHeader("Authorization");
 			String jwt = null;
 			if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(tokenHead)) {
@@ -57,16 +55,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				// 可以将用户名及角色信息都编码到 JWT claims中
 				// 然后通过解析JWT 的 claims 对象来 创建UserDetails信息
 				// 避免重复查询数据库
-				UserDetails userDetails = customUserDetailsService.loadUserByUsername(claims.getSubject());
+				UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
-		} catch (Exception ex) {
-			logger.error("Could not set user authentication in security context", ex);
-			throw new ResourceNotFoundException(Constant.ERROR_CODE, "身份认证失败!");
+			filterChain.doFilter(request, response);
 		}
-
-		filterChain.doFilter(request, response);
-	}
 }
