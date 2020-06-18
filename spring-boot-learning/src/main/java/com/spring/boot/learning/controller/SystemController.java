@@ -3,7 +3,6 @@ package com.spring.boot.learning.controller;
 import com.spring.api.model.ResponseEntity;
 import com.spring.api.tools.Constant;
 import com.spring.boot.learning.model.SysMenuModel;
-import com.spring.boot.learning.model.UserEntity;
 import com.spring.boot.learning.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,6 @@ import java.util.List;
 public class SystemController {
 
 
-
 	private SysMenuService sysMenuService;
 
 	@Autowired
@@ -34,10 +32,9 @@ public class SystemController {
 
 
 	@GetMapping(value = "/getUserMenuInfo")
-	public ResponseEntity getUserMenuInfo(@RequestParam("userId") Long userId) {
-		UserEntity userEntity = new UserEntity();
+	public ResponseEntity getUserMenuInfo(@RequestParam("username") String username) {
 		//获取权限菜单
-		List<SysMenuModel> menuModels = sysMenuService.getUserMenuInfo(userId);
+		List<SysMenuModel> menuModels = sysMenuService.getUserMenuInfo(username);
 		List<SysMenuModel> menu = new ArrayList<>();
 		for (SysMenuModel item : menuModels) {
 			if (Constant.STRING0.equals(item.getParentId())) {
@@ -52,7 +49,6 @@ public class SystemController {
 				menu.add(item);
 			}
 		}
-		userEntity.setRoleMenus(menu);
-		return ResponseEntity.build(200, Constant.SUCCESS_MSG, userEntity);
+		return ResponseEntity.build(200, Constant.SUCCESS_MSG, menu);
 	}
 }

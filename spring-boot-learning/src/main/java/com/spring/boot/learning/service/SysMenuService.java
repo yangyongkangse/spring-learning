@@ -16,9 +16,9 @@ import java.util.List;
 public interface SysMenuService extends IService<SysMenuModel> {
 
 	/**
-	* author: yangyk
-	* date:2020/6/3 16:41
-	* description:
-	**/
-	List<SysMenuModel>  getUserMenuInfo(Long userId );
+	 * author: yangyk
+	 * date:2020/6/3 16:41
+	 * description:
+	 **/
+	List<SysMenuModel> getUserMenuInfo(String username);
 }

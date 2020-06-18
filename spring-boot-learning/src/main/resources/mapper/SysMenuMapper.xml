@@ -16,14 +16,16 @@
     </resultMap>
     <select id="getUserMenuInfo" resultMap="BaseResultMap">
         select m.id,
-               menu_name,
-               menu_url,
-               parent_id,
-               icon
-        from tb_sys_user_role r
-                     left join tb_sys_role_permit tsrp on r.role_id = tsrp.role_id
+               m.menu_name,
+               m.menu_url,
+               m.parent_id,
+               m.icon
+        from tb_sys_user u
+                     inner join tb_sys_user_role r on u.id = r.user_id
+                     left join tb_sys_role_permit tsrp
+                on r.role_id = tsrp.role_id
                      left join tb_sys_menu m on tsrp.menu_id = m.id
         where m.del_flag = 0
-          and r.user_id = #{userId}
+          and u.username = #{username}
     </select>
 </mapper>

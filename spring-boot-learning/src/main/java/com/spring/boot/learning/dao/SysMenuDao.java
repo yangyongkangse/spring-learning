@@ -21,5 +21,5 @@ public interface SysMenuDao extends BaseMapper<SysMenuModel> {
 	 * date:2020/6/3 16:41
 	 * description:
 	 **/
-	List<SysMenuModel> getUserMenuInfo(@Param("userId") Long userId);
+	List<SysMenuModel> getUserMenuInfo(@Param("username") String username);
 }

@@ -28,6 +28,7 @@ import java.io.IOException;
 public class MongoDbLocalFileUploadController {
 
 	private GuppyMongoUtils guppyMongoUtils;
+
 	@Autowired
 	public void setGuppyMongoUtils(GuppyMongoUtils guppyMongoUtils) {
 		this.guppyMongoUtils = guppyMongoUtils;
@@ -45,6 +46,7 @@ public class MongoDbLocalFileUploadController {
 		log.info("======== 文档: " + file.getName() + " 已成功保存[store]: ObjectID(" + mongoId + ") ========");
 		return mongoId;
 	}
+
 	@ApiOperation("下载文件")
 	@GetMapping(value = "/downFile")
 	public void downFile(String fileId, HttpServletResponse response) throws IOException {

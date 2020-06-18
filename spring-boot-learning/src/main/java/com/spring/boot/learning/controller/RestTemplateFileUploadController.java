@@ -31,17 +31,18 @@ import java.util.Date;
 public class RestTemplateFileUploadController {
 
 	private RestTemplate restTemplate;
+
 	@Autowired
-	private void setRestTemplate(RestTemplate restTemplate){
-		this.restTemplate=restTemplate;
+	private void setRestTemplate(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
 	}
+
 	/**
-	* @author: yangyongkang
-	* date:2020/1/3
-	* time:11:04
-	* description:开启文件上传
-	*
-	**/
+	 * @author: yangyongkang
+	 * date:2020/1/3
+	 * time:11:04
+	 * description:开启文件上传
+	 **/
 	@ApiOperation("鉴权开启文件上传")
 	@GetMapping("/fileUpload")
 	public String upload() {

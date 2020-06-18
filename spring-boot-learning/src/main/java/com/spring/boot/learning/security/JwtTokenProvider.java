@@ -1,5 +1,7 @@
 package com.spring.boot.learning.security;
 
+import com.spring.api.tools.Constant;
+import com.spring.boot.learning.exception.ResourceNotFoundException;
 import io.jsonwebtoken.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +34,7 @@ public class JwtTokenProvider {
 		//过期时间
 		Date expiryDate = new Date(now.getTime() + expiration);
 		return Jwts.builder()
+				.claim(Constant.ROLE_LOGIN, authentication.getAuthorities())
 				.setSubject(authentication.getPrincipal().toString())
 				.setIssuedAt(new Date())
 				.setExpiration(expiryDate)
@@ -59,15 +62,37 @@ public class JwtTokenProvider {
 			return true;
 		} catch (SignatureException ex) {
 			log.error("Invalid JWT signature");
+			throw new ResourceNotFoundException(Constant.ERROR_CODE, "Invalid JWT signature");
 		} catch (MalformedJwtException ex) {
 			log.error("Invalid JWT token");
+			throw new ResourceNotFoundException(Constant.ERROR_CODE, "Invalid JWT token");
 		} catch (ExpiredJwtException ex) {
 			log.error("Expired JWT token");
+			throw new ResourceNotFoundException(Constant.ERROR_CODE, "Expired JWT token");
 		} catch (UnsupportedJwtException ex) {
 			log.error("Unsupported JWT token");
+			throw new ResourceNotFoundException(Constant.ERROR_CODE, "Unsupported JWT token");
 		} catch (IllegalArgumentException ex) {
 			log.error("JWT claims string is empty.");
+			throw new ResourceNotFoundException(Constant.ERROR_CODE, "JWT claims string is empty");
 		}
-		return false;
+	}
+
+	/**
+	 * author: yangyk
+	 * date:2020/6/18 9:50
+	 * description:获取token的过期时间
+	 **/
+	public Date getExpirationDateFromToken(String token) {
+		return getClaimByToken(token).getExpiration();
+	}
+
+	/**
+	 * author: yangyk
+	 * date:2020/6/18 9:50
+	 * description:根据token获取username
+	 **/
+	public String getUsernameFromToken(String token) {
+		return getClaimByToken(token).getSubject();
 	}
 }

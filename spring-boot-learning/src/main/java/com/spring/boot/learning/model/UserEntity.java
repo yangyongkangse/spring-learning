@@ -4,10 +4,12 @@ package com.spring.boot.learning.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -23,22 +25,17 @@ public class UserEntity implements UserDetails {
 	private String username;
 	private String fullName;
 	private String password;
-	private List<SysMenuModel> roleMenus = new ArrayList<>();
-	private Collection<? extends GrantedAuthority> authorities;
-
-	public UserEntity(Long id, String username, String password, String fullName, Collection<? extends GrantedAuthority> authorities,
-					  List<SysMenuModel> roleMenus) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.fullName = fullName;
-		this.authorities = authorities;
-		this.roleMenus = roleMenus;
-	}
+	private List<SysMenuModel> menus = new ArrayList<>();
+	private List<SysRoleModel> roles = new ArrayList<>();
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.authorities;
+		// 填充权限
+		Collection<SimpleGrantedAuthority> authorities = new HashSet<>();
+		for (SysRoleModel role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+		}
+		return authorities;
 	}
 
 	@Override

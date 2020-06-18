@@ -45,21 +45,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-			String bearerToken = request.getHeader("Authorization");
-			String jwt = null;
-			if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(tokenHead)) {
-				jwt = bearerToken.substring(7);
-			}
-			if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-				Claims claims = tokenProvider.getClaimByToken(jwt);
-				// 可以将用户名及角色信息都编码到 JWT claims中
-				// 然后通过解析JWT 的 claims 对象来 创建UserDetails信息
-				// 避免重复查询数据库
-				UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
-				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-				SecurityContextHolder.getContext().setAuthentication(authentication);
-			}
-			filterChain.doFilter(request, response);
+		String bearerToken = request.getHeader("Authorization");
+		String jwt = null;
+		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(tokenHead)) {
+			jwt = bearerToken.substring(7);
 		}
+		if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+			Claims claims = tokenProvider.getClaimByToken(jwt);
+			// 可以将用户名及角色信息都编码到 JWT claims中
+			// 然后通过解析JWT 的 claims 对象来 创建UserDetails信息
+			// 避免重复查询数据库
+			UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+		}
+		filterChain.doFilter(request, response);
+	}
 }

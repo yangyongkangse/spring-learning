@@ -24,7 +24,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuModel> im
 	private SysMenuDao sysMenuDao;
 
 	@Override
-	public List<SysMenuModel> getUserMenuInfo(Long userId) {
-		return sysMenuDao.getUserMenuInfo(userId);
+	public List<SysMenuModel> getUserMenuInfo(String username) {
+		return sysMenuDao.getUserMenuInfo(username);
 	}
 }
