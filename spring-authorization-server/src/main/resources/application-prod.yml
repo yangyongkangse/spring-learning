@@ -1,7 +1,11 @@
 #===========================
 # 容器相关设置
 server:
-  port: 9081
+  port: 7083
+  compression:
+    enabled: true  #是否开启压缩，默认为false.
+    mime-types: 'application/json,text/css,text/html'   #指定要压缩的MIME type，多个以逗号分隔
+    min-response-size: 2048  #执行压缩的阈值，默认为2048
 #log4j2相关配置
 logging:
   config: classpath:log4j2-spring.xml
@@ -9,7 +13,7 @@ logging:
 # spring 组件相关设置
 spring:
   application:
-    name: spring-api-common
+    name: spring-boot-learning
   jackson:
     date-format: 'yyyy-MM-dd HH:mm:ss'
   rabbitmq:
@@ -17,4 +21,6 @@ spring:
     port: 5672
     username: guest
     password: guest
+
+
 #=============================

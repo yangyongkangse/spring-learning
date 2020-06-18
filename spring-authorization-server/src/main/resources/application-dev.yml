@@ -1,7 +1,7 @@
 #===========================
 # 容器相关设置
 server:
-  port: 9081
+  port: 7081
 #log4j2相关配置
 logging:
   config: classpath:log4j2-spring.xml
@@ -9,7 +9,7 @@ logging:
 # spring 组件相关设置
 spring:
   application:
-    name: spring-api-common
+    name: spring-authorization-server
   jackson:
     date-format: 'yyyy-MM-dd HH:mm:ss'
   rabbitmq:

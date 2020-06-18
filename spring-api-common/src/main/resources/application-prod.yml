@@ -24,15 +24,3 @@ spring:
 
 
 #=============================
-
-#=============================
-#swagger
-swagger:
-  enabled: true
-  title: 'swagger-spring-boot-starter'
-  description: '基于Swagger构建的SpringBoot RESTApi 文档'
-  version: '1.0'
-  base-package: 'com.spring.boot'
-  base-path: /**
-  exclude-path:
-#=============================

@@ -1,7 +1,6 @@
 package com.spring.boot.learning.security;
 
 import io.jsonwebtoken.Claims;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +22,6 @@ import java.io.IOException;
  * @date: 2020/6/17 9:41
  * @description: JWTAuthenticationFilter 从请求中获取JWT token, 验证, 加载token相关用户信息, 并传递给 Spring Security.
  */
-@Log4j2
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	@Value("${jwt.tokenHead}")

@@ -30,6 +30,11 @@
         <pool2.version>2.8.0</pool2.version>
         <jjwt.version>0.9.1</jjwt.version>
         <jaxb.version>2.3.1</jaxb.version>
+        <boot.security.version>2.2.5.RELEASE</boot.security.version>
+        <oauth2.client.version>2.2.5.RELEASE</oauth2.client.version>
+        <oauth2.resource.version>2.2.5.RELEASE</oauth2.resource.version>
+        <oauth2.autoconfigure.version>2.2.5.RELEASE</oauth2.autoconfigure.version>
+        <security.jwt.version>1.0.10.RELEASE</security.jwt.version>
     </properties>
 
     <!--锁定版本编号,子项目无需写groupId version-->
@@ -189,6 +194,31 @@
                 <artifactId>jaxb-api</artifactId>
                 <version>${jaxb.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${boot.security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-oauth2-client</artifactId>
+                <version>${oauth2.client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+                <version>${oauth2.resource.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${oauth2.autoconfigure.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>${security.jwt.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -222,6 +252,7 @@
     <modules>
         <module>spring-boot-learning</module>
         <module>spring-api-common</module>
+        <module>spring-authorization-server</module>
     </modules>
     <build>
         <resources>
@@ -284,16 +315,4 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>spring</id>
-            <url>https://maven.aliyun.com/repository/spring</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
