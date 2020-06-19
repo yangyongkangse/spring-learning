@@ -1,5 +1,5 @@
 ## spring-learning
-  * Redis
+  * Redis Cache
   * MongoDB
   * RabbitMQ
     1. DirectExchange 根据route key 直接找到队列 精确匹配
