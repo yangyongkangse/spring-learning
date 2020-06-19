@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.spring.boot.learning.dao.SysMenuDao;
 import com.spring.boot.learning.model.SysMenuModel;
 import com.spring.boot.learning.service.SysMenuService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,6 +21,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuModel> im
 	@Resource
 	private SysMenuDao sysMenuDao;
 
+	@Cacheable(cacheNames = "system", key = "#root.methodName")
 	@Override
 	public List<SysMenuModel> getUserMenuInfo(String username) {
 		return sysMenuDao.getUserMenuInfo(username);

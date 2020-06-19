@@ -50,6 +50,10 @@ spring:
     port: 5672
     username: guest
     password: guest
+  cache:
+    redis:
+      use-key-prefix: true
+      cache-null-values: false
 #=============================
 # ############################################# mybatis 配置文件 #######################################
 #mybatis

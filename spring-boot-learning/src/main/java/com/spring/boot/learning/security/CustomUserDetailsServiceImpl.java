@@ -6,6 +6,7 @@ import com.spring.boot.learning.exception.ResourceNotFoundException;
 import com.spring.boot.learning.model.UserEntity;
 import com.spring.boot.learning.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 	private void setSysUserService(SysUserService sysUserService) {
 		this.sysUserService = sysUserService;
 	}
+
 
 	@Override
 	public UserEntity loadUserByUsername(String username) {
