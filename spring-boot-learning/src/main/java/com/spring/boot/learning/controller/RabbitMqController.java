@@ -9,7 +9,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -47,35 +46,30 @@ public class RabbitMqController {
 
 	@ApiOperation("精确匹配测试")
 	@GetMapping(value = "/direct")
-	@ResponseBody
 	public void testDirect() {
 		directSender.sendHello();
 	}
 
 	@ApiOperation("广播测试")
 	@GetMapping(value = "/fanout")
-	@ResponseBody
 	public void testFanout() {
 		fanoutSender.send();
 	}
 
 	@ApiOperation("通配符匹配测试1")
 	@GetMapping(value = "/topic1")
-	@ResponseBody
 	public void testTopic1() {
 		topicSender.sendMessage();
 	}
 
 	@ApiOperation("通配符匹配测试2")
 	@GetMapping(value = "/topic2")
-	@ResponseBody
 	public void testTopic2() {
 		topicSender.sendMessages();
 	}
 
 	@ApiOperation("通配符匹配测试3")
 	@GetMapping(value = "/topic3")
-	@ResponseBody
 	public void testTopic3() {
 		topicSender.sendInfo();
 	}

@@ -1,6 +1,6 @@
 package com.spring.boot.learning.rabbitmq.fanout;
 
-import com.spring.boot.learning.config.RabbitFanoutConfig;
+import com.spring.boot.learning.config.RabbitConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -12,10 +12,16 @@ import org.springframework.stereotype.Component;
  * Description:
  */
 @Component
-@RabbitListener(queues = RabbitFanoutConfig.QUEUE_BLOG)
-public class FanoutReceiveBlog {
+public class FanoutReceive {
+	@RabbitListener(queues = RabbitConfig.QUEUE_BLOG)
 	@RabbitHandler
-	public void process(String message) {
+	public void processBlog(String message) {
 		System.out.println("接收者 FanoutReceiveBlog," + message);
+	}
+
+	@RabbitListener(queues = RabbitConfig.QUEUE_NAME)
+	@RabbitHandler
+	public void processName(String message) {
+		System.out.println("接收者 FanoutReceiveName," + message);
 	}
 }

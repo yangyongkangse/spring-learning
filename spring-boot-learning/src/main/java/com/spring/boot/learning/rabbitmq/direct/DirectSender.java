@@ -1,6 +1,6 @@
 package com.spring.boot.learning.rabbitmq.direct;
 
-import com.spring.boot.learning.config.RabbitDirectConfig;
+import com.spring.boot.learning.config.RabbitConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +22,6 @@ public class DirectSender {
 
 	public void sendHello() {
 		String context = "此消息在，默认的交换机模式队列下，有 DirectReceiver 可以收到";
-		rabbitTemplate.convertAndSend(RabbitDirectConfig.QUEUE_NAME, context);
+		rabbitTemplate.convertAndSend("directExchange",RabbitConfig.DIRECT_ROUTER_KEY, context);
 	}
 }

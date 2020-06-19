@@ -1,6 +1,7 @@
 package com.spring.boot.learning.rabbitmq.direct;
 
-import com.spring.boot.learning.config.RabbitDirectConfig;
+import com.spring.boot.learning.config.RabbitConfig;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +13,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DirectReceiver {
-
-	@RabbitListener(queues = RabbitDirectConfig.QUEUE_NAME)
+	@RabbitListener(queues = RabbitConfig.DIRECT_HELLO)
+	@RabbitHandler
 	public void receiveMessage(String message) {
 		System.out.println("接收者 DirectReceiver------" + message);
 	}
