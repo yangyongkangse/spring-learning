@@ -10,13 +10,10 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * <p>
- * 菜单表 服务实现类
- * </p>
- *
- * @author yangyk
- * @since 2020-06-03
- */
+* author: yangyk
+* date:2020/6/19 10:32
+* description:
+**/
 @Service
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuModel> implements SysMenuService {
 

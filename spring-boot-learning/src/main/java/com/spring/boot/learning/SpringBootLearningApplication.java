@@ -1,6 +1,5 @@
 package com.spring.boot.learning;
 
-import com.spring4all.swagger.EnableSwagger2Doc;
 import lombok.extern.log4j.Log4j2;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 @Log4j2
-@EnableSwagger2Doc
 @MapperScan(basePackages = "com.spring.boot.learning.dao")
 public class SpringBootLearningApplication {
 

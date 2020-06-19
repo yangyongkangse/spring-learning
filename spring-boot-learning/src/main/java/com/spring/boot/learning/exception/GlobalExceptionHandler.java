@@ -5,6 +5,8 @@ import com.spring.api.tools.Constant;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.IOException;
+
 /**
  * 全局异常处理
  * Created with IntelliJ IDEA.
@@ -28,6 +30,10 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(value = IoException.class)
 	public ResponseEntity ioExceptionHandler(IoException e) {
+		return ResponseEntity.build(Constant.ERROR_CODE, e.getMessage(), null);
+	}
+	@ExceptionHandler(value = IOException.class)
+	public ResponseEntity IOExceptionHandler(IOException e) {
 		return ResponseEntity.build(Constant.ERROR_CODE, e.getMessage(), null);
 	}
 }

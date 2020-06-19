@@ -2,6 +2,7 @@
 # 容器相关设置
 server:
   port: 8081
+debug: false
 #log4j2相关配置
 logging:
   config: classpath:log4j2-spring.xml
@@ -64,16 +65,6 @@ mybatis-plus:
       idType: AUTO
       table-underline: true
 
-#=============================
-#swagger
-swagger:
-  enabled: true
-  title: 'swagger-spring-boot-starter'
-  description: '基于Swagger构建的SpringBoot RESTApi 文档'
-  version: '1.0'
-  base-package: 'com.spring.boot'
-  base-path: /**
-  exclude-path:
 #=============================
 #jwt
 jwt:

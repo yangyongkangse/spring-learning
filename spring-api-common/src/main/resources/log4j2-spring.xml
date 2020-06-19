@@ -15,7 +15,7 @@
             <Policies>
                 <OnStartupTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="50 MB"/>
-                <TimeBasedTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy interval="1" />
             </Policies>
             <DefaultRolloverStrategy max="30" compressionLevel="9">
                 <Delete basePath="${basedir}" maxDepth="2">
@@ -24,7 +24,6 @@
                 </Delete>
             </DefaultRolloverStrategy>
         </RollingFile>
-
     </Appenders>
 
     <Loggers>

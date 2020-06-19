@@ -15,13 +15,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * <p>
- * 角色表
- * </p>
- *
- * @author yangyk
- * @since 2020-06-03
- */
+* author: yangyk
+* date:2020/6/19 10:32
+* description:
+**/
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

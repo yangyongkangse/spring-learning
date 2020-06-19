@@ -1,7 +1,5 @@
 package com.spring.boot.learning.security;
 
-import com.spring.api.tools.Constant;
-import com.spring.boot.learning.exception.IoException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -9,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @Author: yangyk Created with IntelliJ IDEA
@@ -20,8 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 @Log4j2
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	@Override
-	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IoException {
+	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
 		log.error("Responding with unauthorized error. Message - {}", authException.getMessage());
-		throw new IoException(Constant.ERROR_CODE,"身份认证失败");
+		response.setContentType("application/json;charset=UTF-8");
+		response.getWriter().print("{\"status\":401,\"msg\":\""+authException.getMessage()+"\",\"data\":null}");
+		response.setStatus(401);
+		response.flushBuffer();
 	}
 }

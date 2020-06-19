@@ -7,13 +7,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * <p>
- * 菜单表 Mapper 接口
- * </p>
- *
- * @author yangyk
- * @since 2020-06-03
- */
+* author: yangyk
+* date:2020/6/19 10:32
+* description:
+**/
 public interface SysMenuDao extends BaseMapper<SysMenuModel> {
 
 	/**

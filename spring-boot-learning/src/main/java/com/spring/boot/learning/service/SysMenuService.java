@@ -6,13 +6,10 @@ import com.spring.boot.learning.model.SysMenuModel;
 import java.util.List;
 
 /**
- * <p>
- * 菜单表 服务类
- * </p>
- *
- * @author yangyk
- * @since 2020-06-03
- */
+* author: yangyk
+* date:2020/6/19 10:32
+* description:
+**/
 public interface SysMenuService extends IService<SysMenuModel> {
 
 	/**

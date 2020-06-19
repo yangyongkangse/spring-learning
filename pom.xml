@@ -15,26 +15,26 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mybatisplus-spring-boot-starter.version>3.3.1.tmp</mybatisplus-spring-boot-starter.version>
         <disruptor.version>3.4.2</disruptor.version>
-        <swagger.version>1.9.1.RELEASE</swagger.version>
         <hutool.version>5.2.3</hutool.version>
-        <generator.version>3.3.0</generator.version>
+        <generator.version>3.3.2</generator.version>
         <docker.image.prefix>yangyk</docker.image.prefix>
-        <boot.parent.version>2.2.5.RELEASE</boot.parent.version>
+        <boot.parent.version>2.3.1.RELEASE</boot.parent.version>
         <cloud.version>Hoxton.SR5</cloud.version>
-        <alibaba.cloud.version>2.2.0.RELEASE</alibaba.cloud.version>
-        <boot.version>2.2.5.RELEASE</boot.version>
-        <freemarker.version>2.3.28</freemarker.version>
+        <alibaba.cloud.version>2.2.1.RELEASE</alibaba.cloud.version>
+        <boot.version>2.3.1.RELEASE</boot.version>
+        <velocity.version>2.2</velocity.version>
         <HikariCP.version>3.4.5</HikariCP.version>
         <mysql.version>8.0.20</mysql.version>
         <lombok.version>1.18.12</lombok.version>
         <pool2.version>2.8.0</pool2.version>
         <jjwt.version>0.9.1</jjwt.version>
         <jaxb.version>2.3.1</jaxb.version>
-        <boot.security.version>2.2.5.RELEASE</boot.security.version>
-        <oauth2.client.version>2.2.5.RELEASE</oauth2.client.version>
-        <oauth2.resource.version>2.2.5.RELEASE</oauth2.resource.version>
-        <oauth2.autoconfigure.version>2.2.5.RELEASE</oauth2.autoconfigure.version>
-        <security.jwt.version>1.0.10.RELEASE</security.jwt.version>
+        <boot.security.version>2.3.1.RELEASE</boot.security.version>
+        <oauth2.client.version>2.3.1.RELEASE</oauth2.client.version>
+        <oauth2.resource.version>2.3.1.RELEASE</oauth2.resource.version>
+        <oauth2.autoconfigure.version>2.3.1.RELEASE</oauth2.autoconfigure.version>
+        <security.jwt.version>1.1.1.RELEASE</security.jwt.version>
+        <swagger.version>1.6.1</swagger.version>
     </properties>
 
     <!--锁定版本编号,子项目无需写groupId version-->
@@ -106,9 +106,9 @@
                 <version>${mybatisplus-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.freemarker</groupId>
-                <artifactId>freemarker</artifactId>
-                <version>${freemarker.version}</version>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
             </dependency>
             <!-- mybatis-plus end -->
             <!--数据库连接池 -->
@@ -156,11 +156,6 @@
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
                 <version>${boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.spring4all</groupId>
-                <artifactId>swagger-spring-boot-starter</artifactId>
-                <version>${swagger.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -218,6 +213,12 @@
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-jwt</artifactId>
                 <version>${security.jwt.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

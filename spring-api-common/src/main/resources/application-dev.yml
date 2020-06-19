@@ -2,6 +2,7 @@
 # 容器相关设置
 server:
   port: 9081
+debug: false
 #log4j2相关配置
 logging:
   config: classpath:log4j2-spring.xml
