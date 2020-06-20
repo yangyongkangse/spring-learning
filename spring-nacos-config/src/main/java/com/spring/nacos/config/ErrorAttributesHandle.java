@@ -1,4 +1,4 @@
-package com.spring.boot.order.config;
+package com.spring.nacos.config;
 
 
 import org.springframework.boot.web.error.ErrorAttributeOptions;
@@ -16,6 +16,7 @@ import java.util.Map;
  */
 @Component
 public class ErrorAttributesHandle extends DefaultErrorAttributes {
+
 	@Override
 	public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
 		Map<String, Object> map = super.getErrorAttributes(webRequest, options);

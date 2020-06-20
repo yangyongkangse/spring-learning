@@ -1,6 +1,7 @@
 package com.spring.boot.pay.config;
 
 
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
@@ -16,8 +17,8 @@ import java.util.Map;
 @Component
 public class ErrorAttributesHandle extends DefaultErrorAttributes {
 	@Override
-	public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
-		Map<String, Object> map = super.getErrorAttributes(webRequest, includeStackTrace);
+	public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
+		Map<String, Object> map = super.getErrorAttributes(webRequest, options);
 		HashMap<String, Object> hashMap = new HashMap<>(3);
 		hashMap.put("status", map.get("status"));
 		hashMap.put("msg", map.get("message"));

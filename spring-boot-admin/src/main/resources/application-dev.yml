@@ -16,5 +16,5 @@ spring:
   security:
     user:
       name: admin
-      password: admin
+      password: admin  #监控中心的用户名和密码
 #=============================

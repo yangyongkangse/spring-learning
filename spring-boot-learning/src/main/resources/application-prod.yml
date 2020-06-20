@@ -59,7 +59,7 @@ spring:
       client:
         url: 'http://localhost:8013'  # 添加spring boot admin监控  Spring Boot Admin Server的URL
         username: admin
-        password: admin
+        password: admin   #监控中心服务端的用户名和密码
   cloud:
     nacos:
       discovery:
