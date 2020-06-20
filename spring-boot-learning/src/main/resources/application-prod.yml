@@ -1,11 +1,7 @@
 #===========================
 # 容器相关设置
 server:
-  port: 8083
-  compression:
-    enabled: true  #是否开启压缩，默认为false.
-    mime-types: 'application/json,text/css,text/html'   #指定要压缩的MIME type，多个以逗号分隔
-    min-response-size: 2048  #执行压缩的阈值，默认为2048
+  port: 8023
 debug: false
 #log4j2相关配置
 logging:
@@ -17,15 +13,13 @@ spring:
     name: spring-boot-learning
   jackson:
     date-format: 'yyyy-MM-dd HH:mm:ss'
-  thymeleaf:
-    mode: HTML
-    encoding: utf-8
-    prefix: 'classpath:/templates/'
-    suffix: '.html'
-    cache: false
+  mvc:
+    throw-exception-if-no-handler-found: true #告诉 SpringBoot 当出现 404 错误时, 直接抛出异常
+  resources:
+    add-mappings: false #告诉 SpringBoot 不要为我们工程中的资源文件建立映射
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/learning?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/learning?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource  #数据源
@@ -40,20 +34,14 @@ spring:
       connection-test-query: SELECT 1
   redis:
     database: 0 #Redis数据库索引（默认为0）
-    host: 127.0.0.1 # Redis服务器地址
+    host: localhost # Redis服务器地址
     port: 6379  # Redis服务器端口
     password: root # Redis服务器连接密码（默认为空）
     timeout: 1000 #链接超时时间
-    lettuce:
-      pool:
-        max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
-        max-wait: -1  #连接池最大阻塞等待时间（使用负值表示没有限制）
-        max-idle: 8 #连接池中的最大空闲连接
-        min-idle: 0   # 连接池中的最小空闲连接
   data:
     mongodb:
       database: test
-      host: 127.0.0.1
+      host: localhost
       port: 27017
       username: root
       password: root
@@ -62,12 +50,20 @@ spring:
     port: 5672
     username: guest
     password: guest
+  cache:
+    redis:
+      use-key-prefix: true
+      cache-null-values: false
   boot:
     admin:
       client:
-        url: 'http://localhost:1083'  # 添加spring boot admin监控  Spring Boot Admin Server的URL
+        url: 'http://localhost:8013'  # 添加spring boot admin监控  Spring Boot Admin Server的URL
         username: admin
         password: admin
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848    #nacos注册中心地址
 management:
   endpoints:
     web:
@@ -76,13 +72,10 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-
 #=============================
-
 # ############################################# mybatis 配置文件 #######################################
 #mybatis
 mybatis-plus:
-  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
   # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
   mapper-locations: classpath:/mapper/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
@@ -94,4 +87,11 @@ mybatis-plus:
       idType: AUTO
       table-underline: true
 
+#=============================
+#jwt
+jwt:
+  header: Authorization
+  secret: aHR0cHM6Ly9teS5vc2NoaW5hLm5ldC91LzM2ODE4Njg
+  expiration: 7200000  #2小时
+  tokenHead: "Bearer "
 #=============================

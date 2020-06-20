@@ -62,6 +62,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-discovery -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${alibaba.cloud.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
@@ -272,6 +278,8 @@
         <module>spring-api-common</module>
         <module>spring-authorization-server</module>
         <module>spring-boot-admin</module>
+        <module>spring-boot-order</module>
+        <module>spring-boot-pay</module>
     </modules>
     <build>
         <resources>

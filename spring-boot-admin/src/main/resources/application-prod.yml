@@ -1,7 +1,7 @@
 #===========================
 # 容器相关设置
 server:
-  port: 1083
+  port: 8013
 debug: false
 #log4j2相关配置
 logging:
