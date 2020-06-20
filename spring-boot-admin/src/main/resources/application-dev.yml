@@ -1,0 +1,20 @@
+#===========================
+# 容器相关设置
+server:
+  port: 1081
+debug: false
+#log4j2相关配置
+logging:
+  config: classpath:log4j2-spring.xml
+#============================
+# spring 组件相关设置
+spring:
+  application:
+    name: spring-boot-admin
+  jackson:
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+  security:
+    user:
+      name: admin
+      password: admin
+#=============================

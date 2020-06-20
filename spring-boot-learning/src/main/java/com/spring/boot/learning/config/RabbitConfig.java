@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * @Author: yangyk Created with IntelliJ IDEA
  * @date: 2020/6/19 14:44
- * @description: 根据spring boot启动原理可实现ApplicationRunner或CommandLineRunner来创建交换机,这里简单根据IOC容器初始化的时候创建交换机及队列并绑定
+ * @description:
  */
 @Component
 public class RabbitConfig {

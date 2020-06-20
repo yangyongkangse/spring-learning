@@ -7,9 +7,10 @@
         <artifactId>spring-learning</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>spring-api-common</artifactId>
-    <name>spring-api-common</name>
-    <description>spring-api-common</description>
+
+    <artifactId>spring-boot-admin</artifactId>
+    <name>spring-boot-admin</name>
+    <description>spring-boot-admin project for Spring Boot</description>
 
     <properties>
         <java.version>11</java.version>
@@ -30,36 +31,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--@ConfigurationProperties注解-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!--通过添加@data注解自动生成get set-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
+            <artifactId>spring-boot-admin-starter-server</artifactId>
         </dependency>
         <!--采用 log4j2 start-->
         <dependency>
@@ -78,4 +56,14 @@
             <artifactId>disruptor</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

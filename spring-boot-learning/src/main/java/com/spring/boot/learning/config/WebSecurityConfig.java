@@ -3,6 +3,7 @@ package com.spring.boot.learning.config;
 import com.spring.boot.learning.security.JwtAuthenticationEntryPoint;
 import com.spring.boot.learning.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -90,11 +91,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				//因为使用JWT，所以不需要HttpSession
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
+				.requestMatcher(EndpointRequest.toAnyEndpoint())
 				.authorizeRequests()
 				//允许跨域OPTIONS访问,防止401
 				.antMatchers(HttpMethod.OPTIONS, "**").permitAll()
 				//允许直接访问的资源
-				.antMatchers("/api/login/**").permitAll()
+				.antMatchers("/api/login/**","/actuator/**").permitAll()
 				.anyRequest()
 				.authenticated();
 		// Add our custom JWT security filter

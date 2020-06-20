@@ -35,6 +35,7 @@
         <oauth2.autoconfigure.version>2.3.1.RELEASE</oauth2.autoconfigure.version>
         <security.jwt.version>1.1.1.RELEASE</security.jwt.version>
         <swagger.version>1.6.1</swagger.version>
+        <codecentric.version>2.3.0-SNAPSHOT</codecentric.version>
     </properties>
 
     <!--锁定版本编号,子项目无需写groupId version-->
@@ -77,6 +78,22 @@
                 <artifactId>spring-boot-configuration-processor</artifactId>
                 <version>${boot.version}</version>
                 <optional>true</optional>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${codecentric.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${codecentric.version}</version>
             </dependency>
             <!-- 支持RabbitMQ  消息队列-->
             <dependency>
@@ -254,6 +271,7 @@
         <module>spring-boot-learning</module>
         <module>spring-api-common</module>
         <module>spring-authorization-server</module>
+        <module>spring-boot-admin</module>
     </modules>
     <build>
         <resources>

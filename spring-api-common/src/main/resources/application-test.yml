@@ -14,7 +14,7 @@ logging:
 # spring 组件相关设置
 spring:
   application:
-    name: spring-boot-learning
+    name: spring-api-common
   jackson:
     date-format: 'yyyy-MM-dd HH:mm:ss'
   rabbitmq:
@@ -22,6 +22,19 @@ spring:
     port: 5672
     username: guest
     password: guest
-
+  boot:
+    admin:
+      client:
+        url: 'http://localhost:1082'  # 添加spring boot admin监控  Spring Boot Admin Server的URL
+        username: admin
+        password: admin
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # 放开所有端点
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 #=============================
