@@ -21,6 +21,7 @@
         <boot.parent.version>2.3.1.RELEASE</boot.parent.version>
         <cloud.version>Hoxton.SR5</cloud.version>
         <alibaba.cloud.version>2.2.1.RELEASE</alibaba.cloud.version>
+        <openfeign.version>2.2.1.RELEASE</openfeign.version>
         <boot.version>2.3.1.RELEASE</boot.version>
         <velocity.version>2.2</velocity.version>
         <HikariCP.version>3.4.5</HikariCP.version>
@@ -73,6 +74,12 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
                 <version>${alibaba.cloud.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${openfeign.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -287,6 +294,7 @@
         <module>spring-boot-order</module>
         <module>spring-boot-pay</module>
         <module>spring-nacos-config</module>
+        <module>spring-nacos-openfeign</module>
     </modules>
     <build>
         <resources>

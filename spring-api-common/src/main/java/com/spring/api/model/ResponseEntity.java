@@ -1,6 +1,9 @@
 package com.spring.api.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -13,9 +16,12 @@ import java.io.Serializable;
  * Time: 14:45
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResponseEntity implements Serializable {
-	private static final long serialVersionUID = -2010412682466692050L;
 
+	private static final long serialVersionUID = 8393453747357048638L;
 	/**
 	 * 响应业务状态
 	 */
@@ -33,32 +39,6 @@ public class ResponseEntity implements Serializable {
 
 	public static ResponseEntity build(Integer status, String msg, Object data) {
 		return new ResponseEntity(status, msg, data);
-	}
-
-	public static ResponseEntity success(Object data) {
-		return new ResponseEntity(data);
-	}
-
-	public static ResponseEntity error(String msg, Object data) {
-		return new ResponseEntity(msg, data);
-	}
-
-	private ResponseEntity(Integer status, String msg, Object data) {
-		this.status = status;
-		this.msg = msg;
-		this.data = data;
-	}
-
-	private ResponseEntity(String msg, Object data) {
-		this.status = 500;
-		this.msg = msg;
-		this.data = data;
-	}
-
-	private ResponseEntity(Object data) {
-		this.status = 200;
-		this.msg = "OK";
-		this.data = data;
 	}
 
 }

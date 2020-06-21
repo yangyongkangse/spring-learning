@@ -1,0 +1,37 @@
+#===========================
+# 容器相关设置
+server:
+  port: 8082
+debug: false
+#log4j2相关配置
+logging:
+  config: classpath:log4j2-spring.xml
+#============================
+# spring 组件相关设置
+spring:
+  application:
+    name: spring-nacos-openfeign
+  jackson:
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+  mvc:
+    throw-exception-if-no-handler-found: true #告诉 SpringBoot 当出现 404 错误时, 直接抛出异常
+  resources:
+    add-mappings: false #告诉 SpringBoot 不要为我们工程中的资源文件建立映射
+  boot:
+    admin:
+      client:
+        url: http://localhost:8011  # 添加spring boot admin监控  Spring Boot Admin Server的URL
+        username: admin
+        password: admin   #监控中心服务端的用户名和密码
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848    #nacos注册中心地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # 放开所有端点
+  endpoint:
+    health:
+      show-details: ALWAYS
