@@ -10,6 +10,11 @@ spring:
         file-extension: yaml           #从配置中心读取yaml后缀的配置文件
         group: DEV_GROUP              # 根据分组从配置中心读取数据
         namespace: bd14df39-4a32-4fec-8adb-7d3033ad293e  #命名空间id
+    sentinel:
+      transport:
+        dashboard: localhost:9090  #sentinel 工作台地址
+        port: 8719       #默认8719端口 假如被占用会从8719开始依次加1扫描直到找到未被占用端口
+      eager: true #取消Sentinel控制台懒加载
 #spring boot读取配置文件的优先级bootstrap.yml高于application.yml
 #${prefix}-${spring.profile.active}.${file-extension}
 #prefix 默认为 spring.application.name 的值，也可以通过配置项 spring.cloud.nacos.config.prefix来配置。

@@ -15,3 +15,5 @@
   * 采用@LoadBalanced注解及RestTemplate进行微服务之间调用
 ## spring-nacos-openfeign
   * 采用openfeign进行微服务之间的调用
+##  spring-sentinel-dashboard
+  * 启用本地Sentinel dashboard  v.1.7.2
