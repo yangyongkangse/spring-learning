@@ -12,4 +12,6 @@
 ## spring-nacos-config
   * Nacos Config Center
 ## spring-boot-order spring-boot-pay
-  * 微服务之间调用
+  * 采用@LoadBalanced注解及RestTemplate进行微服务之间调用
+## spring-nacos-openfeign
+  * 采用openfeign进行微服务之间的调用
