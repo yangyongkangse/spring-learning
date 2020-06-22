@@ -15,6 +15,15 @@ spring:
         dashboard: localhost:9090  #sentinel 工作台地址
         port: 8719       #默认8719端口 假如被占用会从8719开始依次加1扫描直到找到未被占用端口
       eager: true #取消Sentinel控制台懒加载
+      # 配置Sentinel 数据源  进行规则持久化
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
 #spring boot读取配置文件的优先级bootstrap.yml高于application.yml
 #${prefix}-${spring.profile.active}.${file-extension}
 #prefix 默认为 spring.application.name 的值，也可以通过配置项 spring.cloud.nacos.config.prefix来配置。

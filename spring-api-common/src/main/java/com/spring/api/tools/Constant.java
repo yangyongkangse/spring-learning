@@ -17,8 +17,11 @@ public class Constant {
 	public static final String STRING2 = "2";
 	public static final String STRING3 = "3";
 	public static final String SUCCESS_MSG = "接口调用成功";
-	public static final String SUCCESS_ERROR = "接口调用失败";
+	public static final String ERROR_MSG = "接口调用失败";
 	public static final String TOKEN = "接口调用失败";
 	public static final Integer ERROR_CODE = 500;
 	public static final String ROLE_LOGIN = "ROLE_LOGIN";
+	public static final String RESOURCE_NOT_FOUND_MSG = "未查找到资源";
+	public static final String NOT_PERMISSION_MSG = "没有权限";
+
 }

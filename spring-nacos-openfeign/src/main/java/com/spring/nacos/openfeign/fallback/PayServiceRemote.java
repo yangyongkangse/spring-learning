@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @description:
  */
 @Component
-public class PayServiceRemoteHystrix implements PayServiceClient {
+public class PayServiceRemote implements PayServiceClient {
 	@Override
 	public ResponseEntity getPayInfo(Long id) {
 		return ResponseEntity.build(500,"请求超时", null);

@@ -1,7 +1,7 @@
 package com.spring.nacos.openfeign.client;
 
 import com.spring.api.model.ResponseEntity;
-import com.spring.nacos.openfeign.fallback.PayServiceRemoteHystrix;
+import com.spring.nacos.openfeign.fallback.PayServiceRemote;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * fallback 进行远程调用的熔断和降级处理
  * Primary 确定要注入的bean
  */
-@FeignClient(name = "spring-boot-pay", fallback = PayServiceRemoteHystrix.class)
+@FeignClient(name = "spring-boot-pay", fallback = PayServiceRemote.class)
 @Primary
 public interface PayServiceClient {
 	/**

@@ -37,6 +37,7 @@
         <security.jwt.version>1.1.1.RELEASE</security.jwt.version>
         <swagger.version>1.6.1</swagger.version>
         <codecentric.version>2.3.0-SNAPSHOT</codecentric.version>
+        <sentinel.version>1.7.2</sentinel.version>
     </properties>
 
     <!--锁定版本编号,子项目无需写groupId version-->
@@ -73,6 +74,12 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
                 <version>${alibaba.cloud.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.csp/sentinel-datasource-nacos -->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-datasource-nacos</artifactId>
+                <version>${sentinel.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-config -->
             <dependency>
@@ -300,6 +307,7 @@
         <module>spring-boot-pay</module>
         <module>spring-nacos-config</module>
         <module>spring-nacos-openfeign</module>
+        <module>spring-nacos-sentinel</module>
     </modules>
     <build>
         <resources>

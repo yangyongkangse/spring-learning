@@ -51,6 +51,15 @@ spring:
         dashboard: localhost:9090  #sentinel 工作台地址
         port: 8719       #默认8719端口 假如被占用会从8719开始依次加1扫描直到找到未被占用端口
       eager: true #取消Sentinel控制台懒加载
+      # 配置Sentinel 数据源  进行规则持久化
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
 management:
   endpoints:
     web:
