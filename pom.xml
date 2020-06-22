@@ -38,6 +38,7 @@
         <swagger.version>1.6.1</swagger.version>
         <codecentric.version>2.3.0-SNAPSHOT</codecentric.version>
         <sentinel.version>1.7.2</sentinel.version>
+        <gateway.version>2.2.2.RELEASE</gateway.version>
     </properties>
 
     <!--锁定版本编号,子项目无需写groupId version-->
@@ -63,6 +64,11 @@
                 <version>${alibaba.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>${gateway.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-discovery -->
             <dependency>
@@ -308,6 +314,7 @@
         <module>spring-nacos-config</module>
         <module>spring-nacos-openfeign</module>
         <module>spring-nacos-sentinel</module>
+        <module>spring-cloud-gateway</module>
     </modules>
     <build>
         <resources>

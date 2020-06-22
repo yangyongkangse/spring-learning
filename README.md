@@ -59,4 +59,146 @@
        2. limitApp:对应的黑名单/白名单,不同 origin 用,分隔,如 appA,appB
        3. strategy:限制模式,AUTHORITY_WHITE 为白名单模式,AUTHORITY_BLACK 为黑名单模式,默认为白名单模式
 ## spring-nacos-sentinel
-    * 整合sentinel,熟悉@SentinelResoure注解的使用及机制,配置sentinel规则持久化
+   * 整合sentinel,熟悉@SentinelResoure注解的使用及机制,配置sentinel规则持久化
+## spring-cloud-gateway
+  * 整合spring-cloud-gateway 
+     * 网关断言类型
+       *  After 路由断言 Factory,After Route Predicate Factory采用一个参数——日期时间。在该日期时间之后发生的请求都将被匹配.
+         ```
+           spring:
+             cloud:
+               gateway:
+                 routes:
+                 - id: after_route
+                   uri: http://example.org
+                   predicates:
+                   - After=2020-01-20T17:42:47.789-07:00[Asia/Shanghai]
+         ```    
+       * Before 路由断言 Factory,Before Route Predicate Factory采用一个参数——日期时间。在该日期时间之前发生的请求都将被匹配。
+         ```
+           spring:
+             cloud:
+               gateway:
+                 routes:
+                 - id: before_route
+                   uri: http://example.org
+                   predicates:
+                   - Before=2020-01-20T17:42:47.789-07:00[Asia/Shanghai]
+         ```
+       * Between 路由断言 Factory,Between 路由断言 Factory有两个参数，datetime1和datetime2。在datetime1和datetime2之间的请求将被匹配。datetime2参数的实际时间必须在datetime1之后
+         ```
+           spring:
+             cloud:
+               gateway:
+                 routes:
+                 - id: between_route
+                   uri: http://example.org
+                   predicates:
+                   - Between=2020-01-20T17:42:47.789-07:00[Asia/Shanghai], 2019-01-20T17:42:47.789-07:00[Asia/Shanghai]
+         ```
+       * Cookie 路由断言 Factory,Cookie 路由断言 Factory有两个参数，cookie名称和正则表达式。请求包含cookie名称且正则表达式为真的将会被匹配
+         ```
+          spring:
+            cloud:
+              gateway:
+                routes:
+                - id: cookie_route
+                  uri: http://example.org
+                  predicates:
+                  - Cookie=chocolate, ch.p
+         ```
+       * Header  路由断言 Factory ,Header 路由断言 Factory有两个参数，header名称和正则表达式。请求包含header名称且正则表达式为真的将会被匹配
+         ```
+          spring:
+           cloud:
+             gateway:
+               routes:
+               - id: header_route
+                 uri: http://example.org
+                 predicates:
+                 - Header=X-Request-Id, \d+       
+         ```
+       * Host 路由断言 Factory,Host 路由断言 Factory包括一个参数：host name列表。使用Ant路径匹配规则，.作为分隔符
+         ```
+          spring:
+            cloud:
+              gateway:
+                routes:
+                - id: host_route
+                  uri: http://example.org
+                  predicates:
+                  - Host=**.somehost.org,**.anotherhost.org
+         ```
+       * Method 路由断言 Factory,Method 路由断言 Factory只包含一个参数: 需要匹配的HTTP请求方式
+         ```
+          spring:
+            cloud:
+              gateway:
+                routes:
+                - id: method_route
+                  uri: http://example.org
+                  predicates:
+                  - Method=GET  
+         ```
+       * Path 路由断言 Factory,Path 路由断言 Factory 有2个参数: 一个Spring PathMatcher表达式列表和可选
+         ```
+         spring:
+           cloud:
+             gateway:
+               routes:
+               - id: path_route
+                 uri: http://example.org
+                 predicates:
+                 - Path=/api/pay/**
+         ```
+       * Query 路由断言 Factory,Query 路由断言 Factory 有2个参数: 必选项 param 和可选项 regexp.
+         ```
+         spring:
+           cloud:
+             gateway:
+               routes:
+               - id: query_route
+                 uri: http://example.org
+                 predicates:
+                 - Query=baz
+         ```
+         * 包含了请求参数 baz的都将被匹配。
+       * RemoteAddr 路由断言 Factory,RemoteAddr 路由断言 Factory的参数为 一个CIDR符号（IPv4或IPv6）字符串的列表，最小值为1，例如
+         ```
+         spring:
+           cloud:
+             gateway:
+               routes:
+               - id: remoteaddr_route
+                 uri: http://example.org
+                 predicates:
+                 - RemoteAddr=192.168.1.1/24  
+         ```
+         * 如果请求的remote address 为 192.168.1.1则将被路由
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       

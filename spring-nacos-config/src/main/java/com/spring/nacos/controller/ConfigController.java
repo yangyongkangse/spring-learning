@@ -20,8 +20,11 @@ public class ConfigController {
 	@Value("${config.info}")
 	private String configInfo;
 
+	@Value("${server.port}")
+	private String port;
+
 	@GetMapping(value = "/getConfigInfo")
 	public String getConfigInfo() {
-		return configInfo;
+		return configInfo+port;
 	}
 }
