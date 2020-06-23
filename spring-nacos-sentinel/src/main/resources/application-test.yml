@@ -37,10 +37,38 @@ spring:
         ds1:
           nacos:
             server-addr: localhost:8848
-            dataId: ${spring.application.name}
+            dataId: ${spring.application.name}-flow
             groupId: DEFAULT_GROUP
             data-type: json
-            rule-type: flow
+            rule-type: flow   #流控规则
+        ds2:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-degrade
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: degrade   #降级规则
+        ds3:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-system
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: system   #系统规则
+        ds4:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-authority
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: authority   #授权规则
+        ds5:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-param
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: param_flow   #热点规则
 management:
   endpoints:
     web:

@@ -2,10 +2,6 @@
 # 容器相关设置
 server:
   port: 8063
-  compression:
-    enabled: true  #是否开启压缩，默认为false.
-    mime-types: 'application/json,text/css,text/html'   #指定要压缩的MIME type，多个以逗号分隔
-    min-response-size: 2048  #执行压缩的阈值，默认为2048
 debug: false
 #log4j2相关配置
 logging:
@@ -20,9 +16,24 @@ spring:
   boot:
     admin:
       client:
-        url: 'http://localhost:8013'  # 添加spring boot admin监控  Spring Boot Admin Server的URL
+        url: http://localhost:8011  # 添加spring boot admin监控  Spring Boot Admin Server的URL
         username: admin
         password: admin
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/learning?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource  #数据源
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
   cloud:
     nacos:
       discovery:
@@ -36,3 +47,15 @@ management:
     health:
       show-details: ALWAYS
 #=============================
+#mybatis
+mybatis-plus:
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.authorization.server.model
+  #启动时是否检查 MyBatis XML 文件的存在，默认不检查
+  checkConfigLocation: true
+  global-config:
+    db-config:
+      idType: AUTO
+      table-underline: true
