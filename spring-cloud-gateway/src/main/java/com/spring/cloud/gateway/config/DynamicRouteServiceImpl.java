@@ -60,8 +60,6 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
 		} catch (Exception e) {
 			return "update route fail";
 		}
-
-
 	}
 
 	/**
