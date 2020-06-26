@@ -21,6 +21,14 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuModel> im
 	@Resource
 	private SysMenuDao sysMenuDao;
 
+	/**
+	* author: yangyk
+	* date:2020/6/26 16:46
+	* description:
+	 * Cacheable:添加缓存操作,如果存在缓存直接读取,不再调用方法
+	 * CachePut:更新缓存
+	 * CacheEvict:清除缓存
+	**/
 	@Cacheable(cacheNames = "system", key = "#root.methodName")
 	@Override
 	public List<SysMenuModel> getUserMenuInfo(String username) {
