@@ -1,0 +1,5 @@
+csp:
+  sentinel:
+    dashboard:
+      server: 127.0.0.1:9090
+    eager: true #取消Sentinel控制台懒加载

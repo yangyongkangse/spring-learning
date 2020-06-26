@@ -39,6 +39,13 @@
         <codecentric.version>2.3.0-SNAPSHOT</codecentric.version>
         <sentinel.version>1.7.2</sentinel.version>
         <gateway.version>2.2.2.RELEASE</gateway.version>
+        <dubbo.nacos.version>2.7.7</dubbo.nacos.version>
+        <nacos.client.version>1.3.0</nacos.client.version>
+        <dubbo.version>2.7.7</dubbo.version>
+        <alibaba.spring.version>1.0.6</alibaba.spring.version>
+        <nacos.config.boot.version>0.2.7</nacos.config.boot.version>
+        <dubbo.boot.version>2.7.7</dubbo.boot.version>
+        <dubbo.sentinel.version>1.7.2</dubbo.sentinel.version>
     </properties>
 
     <!--锁定版本编号,子项目无需写groupId version-->
@@ -64,6 +71,56 @@
                 <version>${alibaba.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-registry-nacos -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo.nacos.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.nacos/nacos-client -->
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos.client.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba/dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-spring-boot-starter -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.boot.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.csp/sentinel-apache-dubbo-adapter -->
+            <!-- dubbo对接sentinel -->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-apache-dubbo-adapter</artifactId>
+                <version>${dubbo.sentinel.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.csp/sentinel-transport-simple-http -->
+            <!-- dubbo对接sentinel  用于工作台获取服务信息 -->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-transport-simple-http</artifactId>
+                <version>${dubbo.sentinel.version}</version>
+            </dependency>
+            <!-- Sentinel 核心库 -->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-core</artifactId>
+                <version>${dubbo.sentinel.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.boot/nacos-config-spring-boot-starter -->
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-starter</artifactId>
+                <version>${nacos.config.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -315,6 +372,8 @@
         <module>spring-nacos-openfeign</module>
         <module>spring-nacos-sentinel</module>
         <module>spring-cloud-gateway</module>
+        <module>spring-dubbo-consumer</module>
+        <module>spring-dubbo-provider</module>
     </modules>
     <build>
         <resources>

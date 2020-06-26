@@ -176,8 +176,8 @@
          ```
          * 如果请求的remote address 为 192.168.1.1则将被路由
   * 配置网关动态路由,以nacos作为配置中心     
-  
-       
+## spring-dubbo-consumer spring-dubbo-provider
+  * 构建dubbo微服务,使用nacos作为服务中心及配置中心并集成sentinel,至于sentinel规则持久化请看spring-nacos-sentinel
        
        
        
