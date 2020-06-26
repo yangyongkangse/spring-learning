@@ -1,5 +1,6 @@
-package com.spring.dubbo.provider.service;
+package com.spring.dubbo.provider.service.impl;
 
+import com.spring.dubbo.provider.service.DubboProviderService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
