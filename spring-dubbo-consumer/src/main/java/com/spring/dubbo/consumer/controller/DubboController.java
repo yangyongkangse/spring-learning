@@ -25,7 +25,7 @@ public class DubboController {
 	private DubboProviderService dubboProviderService;
 
 	@GetMapping(value = "/getPortInfo")
-	@SentinelResource(value = "hotKey", blockHandlerClass = BlockExceptionHandle.class, blockHandler = "handleException", fallbackClass = FallBackHandle.class, fallback = "handleNotPermissionException")
+	@SentinelResource(value = "portKey", blockHandlerClass = BlockExceptionHandle.class, blockHandler = "handleException", fallbackClass = FallBackHandle.class, fallback = "handleNotPermissionException")
 	public ResponseEntity getPortInfo(@RequestParam("content") String content) {
 		String result = dubboProviderService.getDubboService(content);
 		return ResponseEntity.build(200, Constant.SUCCESS_MSG, result);
