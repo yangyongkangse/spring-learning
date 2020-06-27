@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,21 +33,7 @@ public class SystemController {
 	@GetMapping(value = "/getUserMenuInfo")
 	public ResponseEntity getUserMenuInfo(@RequestParam("username") String username) {
 		//获取权限菜单
-		List<SysMenuModel> menuModels = sysMenuService.getUserMenuInfo(username);
-		List<SysMenuModel> menu = new ArrayList<>();
-		for (SysMenuModel item : menuModels) {
-			if (Constant.STRING0.equals(item.getParentId())) {
-				//查找子集
-				List<SysMenuModel> child = new ArrayList<>();
-				for (SysMenuModel vars : menuModels) {
-					if (vars.getParentId().equals(item.getId().toString())) {
-						child.add(vars);
-					}
-				}
-				item.setChild(child);
-				menu.add(item);
-			}
-		}
+		List<SysMenuModel> menu = sysMenuService.getUserMenuInfo(username);
 		return ResponseEntity.build(200, Constant.SUCCESS_MSG, menu);
 	}
 }
