@@ -1,4 +1,4 @@
-package com.spring.learning.Controller;
+package com.spring.learning.controller;
 
 import com.spring.learning.annonation.SystemLog;
 import com.spring.learning.model.ResponseEntity;
