@@ -1,0 +1,83 @@
+#===========================
+# 容器相关设置
+server:
+  port: 7012
+debug: false
+#log4j2相关配置
+logging:
+  config: classpath:log4j2-spring.xml
+#============================
+# spring 组件相关设置
+spring:
+  application:
+    name: spring-datasource-transactional
+  jackson:
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+  mvc:
+    throw-exception-if-no-handler-found: true #告诉 SpringBoot 当出现 404 错误时, 直接抛出异常
+  resources:
+    add-mappings: true #告诉 SpringBoot 要为我们工程中的资源文件建立映射  默认为true
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://localhost:3306/qr_code?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&allowMultiQueries=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        minimum-idle: 5
+        maximum-pool-size: 15
+        auto-commit: true
+        idle-timeout: 30000
+        pool-name: DatebookHikariCP
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+    cosmo:
+      jdbc-url: jdbc:mysql://localhost:3306/csomo-barcode?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&allowMultiQueries=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        minimum-idle: 5
+        maximum-pool-size: 15
+        auto-commit: true
+        idle-timeout: 30000
+        pool-name: DatebookHikariCP
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+#=============================
+# ############################################# mybatis 配置文件 #######################################
+#mybatis
+mybatis-plus:
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapperLocations: classpath:/mapper/**/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.spring.learning.model
+  #启动时是否检查 MyBatis XML 文件的存在，默认不检查
+  checkConfigLocation: true
+  global-config:
+    db-config:
+      idType: AUTO
+      table-underline: true
+##### 多数据源调用mp的一些内置方法的时候始终切换不成功. 原因mp内置的ServiceImpl在新增,更改删除方法上自带事物.解决办法重写实现类掉用dao
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+########监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # 放开所有端点
+  endpoint:
+    health:
+      show-details: ALWAYS
+#jwt
+jwt:
+  header: Authorization
+  secret: aHR0cHM6Ly9teS5vc2NoaW5hLm5ldC91LzM2ODE4Njg
+  expiration: 7200000  #2小时
+  tokenHead: "Bearer "
