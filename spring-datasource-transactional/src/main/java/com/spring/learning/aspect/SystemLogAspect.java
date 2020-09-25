@@ -6,7 +6,6 @@ import com.spring.learning.annonation.SystemLog;
 import com.spring.learning.model.SysLogModel;
 import com.spring.learning.service.SysLogService;
 import com.spring.learning.util.Constant;
-import com.spring.learning.util.ThreadPoolUtils;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.util.Strings;
 import org.aspectj.lang.JoinPoint;
@@ -70,11 +69,7 @@ public class SystemLogAspect {
 	public void afterSuccess(JoinPoint joinPoint) {
 		try {
 			SysLogModel sysLogModel = dealArgs(joinPoint, Constant.SUCCESS_CODE_STR);
-			/**
-			 * 调用线程保存至log表
-			 */
-			ThreadPoolUtils.getPool().execute(new SaveSystemLogThread(sysLogModel, sysLogService));
-
+			sysLogService.saveSysLog(sysLogModel);
 		} catch (Exception e) {
 			log.error("AOP后置通知异常", e);
 		}
@@ -89,11 +84,7 @@ public class SystemLogAspect {
 	public void afterError(JoinPoint joinPoint) {
 		try {
 			SysLogModel sysLogModel = dealArgs(joinPoint, Constant.ERROR_CODE_STR);
-			/**
-			 * 调用线程保存至log表
-			 */
-			ThreadPoolUtils.getPool().execute(new SaveSystemLogThread(sysLogModel, sysLogService));
-
+			sysLogService.saveSysLog(sysLogModel);
 		} catch (Exception e) {
 			log.error("AOP后置通知异常", e);
 		}
@@ -136,29 +127,6 @@ public class SystemLogAspect {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	/**
-	 * Author: yangyk
-	 * Date: 2020/9/24 16:02
-	 * Description: 保存日志至数据库
-	 */
-	private static class SaveSystemLogThread implements Runnable {
-
-		private SysLogModel log;
-		private SysLogService logService;
-
-		public SaveSystemLogThread(SysLogModel esLog, SysLogService logService) {
-			this.log = esLog;
-			this.logService = logService;
-		}
-
-		@Override
-		public void run() {
-			if (log != null) {
-				logService.save(log);
-			}
-		}
 	}
 
 	/**

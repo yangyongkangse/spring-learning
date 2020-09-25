@@ -10,4 +10,5 @@ import com.spring.learning.model.SysLogModel;
  */
 public interface SysLogService extends IService<SysLogModel> {
 
+	void saveSysLog(SysLogModel sysLogModel);
 }
