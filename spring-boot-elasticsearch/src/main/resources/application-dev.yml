@@ -1,0 +1,12 @@
+#===========================
+# 容器相关设置
+server:
+  port: 9051
+debug: false
+#log4j2相关配置
+logging:
+  config: classpath:log4j2-spring.xml
+#============================
+elasticsearch:
+  url: localhost
+  port: 9200

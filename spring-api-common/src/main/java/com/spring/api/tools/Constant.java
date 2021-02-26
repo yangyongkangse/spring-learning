@@ -16,6 +16,10 @@ public class Constant {
 	public static final String STRING1 = "1";
 	public static final String STRING2 = "2";
 	public static final String STRING3 = "3";
+	public static final Integer INTEGER0 = 0;
+	public static final Integer INTEGER1 = 1;
+	public static final Integer INTEGER2 = 2;
+	public static final Integer INTEGER3 = 3;
 	public static final String SUCCESS_MSG = "接口调用成功";
 	public static final String ERROR_MSG = "接口调用失败";
 	public static final String TOKEN = "接口调用失败";
