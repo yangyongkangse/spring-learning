@@ -7,6 +7,8 @@
     1. Fanout Exchange 不处理route key 全网发送,所有绑定的队列都发送
   * Docker
   * Spring Security JWT 安全
+## spring-boot-elasticsearch
+  * 数据检索 
 ## spring-boot-admin
   * Spring Boot Admin 监控
 ## spring-nacos-config

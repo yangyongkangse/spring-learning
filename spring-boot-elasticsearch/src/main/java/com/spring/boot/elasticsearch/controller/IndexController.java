@@ -174,7 +174,7 @@ public class IndexController {
 		// 将上面的过滤器和ID为myFilter的注解进行关联
 		FilterProvider filters = new SimpleFilterProvider().addFilter("jsonFilter", filter);
 		BulkRequest bulkRequest = new BulkRequest();
-		bulkRequest.timeout("10s");
+		bulkRequest.timeout("5s");
 		if (!CollectionUtils.isEmpty(bookList.getBooks())) {
 			for (Books book : bookList.getBooks()) {
 				long snowFlakeId = Util.getSnowFlakeId();
