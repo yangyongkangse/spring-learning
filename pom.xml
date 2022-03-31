@@ -22,7 +22,7 @@
         <cloud.version>Hoxton.SR5</cloud.version>
         <alibaba.cloud.version>2.2.1.RELEASE</alibaba.cloud.version>
         <openfeign.version>2.2.1.RELEASE</openfeign.version>
-        <boot.version>2.3.1.RELEASE</boot.version>
+        <boot.version>2.5.12</boot.version>
         <velocity.version>2.2</velocity.version>
         <HikariCP.version>3.4.5</HikariCP.version>
         <mysql.version>8.0.20</mysql.version>
